@@ -5,10 +5,9 @@
 
 export const education = [
   {
-    institution: "Jamia Hamdard",
-    degree: "B.Tech. in Computer Science",
+    institution: "Jamia Hamdard University",
+    degree: "B.Tech. in Computer Science Engineering",
     duration: "2023 — June 2027 (Expected)",
-    currentYear: "3rd Year Undergraduate",
     cgpa: "7.6 / 10",
     location: "New Delhi, India",
     coursework: [

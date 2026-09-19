@@ -1,122 +1,156 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { personalInfo } from "../../data/personal";
-import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
+import { socialLinks } from "../../data/socials";
+import { SocialLinks } from "../common/SocialLinks";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  FileText,
+  ArrowUpRight,
+  Copy,
+  Check,
+  Send,
+  Calendar
+} from "lucide-react";
 
 export const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleCopyEmail = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
-    <section id="contact" className="contact">
-      <div className="section-inner contact-grid">
-        <div className="contact-intro">
-          <p className="eyebrow">Contacts</p>
-          <h2>
-            Have a project?<br />
-            Let's talk!
-          </h2>
-          <div style={{ marginBottom: "24px" }}>
-            <a className="btn btn-main" href={personalInfo.emailHref}>
-              Email me
+    <section id="contact" className="contact-section">
+      <div className="section-inner">
+        <motion.div
+          className="contact-card-container"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          {/* Header */}
+          <div className="contact-header">
+            <div className="section-eyebrow">LET'S CONNECT</div>
+            <h2 className="contact-title">Have a Project or Opportunity in Mind?</h2>
+            <p className="contact-subtitle">
+              I am open to software engineering internships, technical collaborations,
+              and full-time engineering opportunities. Whether you have an open role,
+              want to review project architecture, or need a dedicated developer, feel free
+              to reach out directly.
+            </p>
+          </div>
+
+          {/* Contact Direct Cards Grid */}
+          <div className="contact-channels-grid">
+            {/* Email Card */}
+            <div className="contact-channel-card">
+              <div className="channel-icon-box" aria-hidden="true">
+                <Mail size={22} />
+              </div>
+              <div className="channel-info">
+                <span className="channel-label">EMAIL DIRECT</span>
+                <a
+                  href={personalInfo.emailHref}
+                  className="channel-value"
+                  aria-label="Email Md Naquiuzzaman"
+                >
+                  {personalInfo.email}
+                </a>
+              </div>
+              <button
+                type="button"
+                className="channel-copy-btn"
+                onClick={handleCopyEmail}
+                aria-label={copied ? "Email copied to clipboard" : "Copy email address"}
+                title="Copy email to clipboard"
+              >
+                {copied ? <Check size={16} color="#34d399" /> : <Copy size={16} />}
+                <span className="copy-tooltip">{copied ? "Copied!" : "Copy"}</span>
+              </button>
+            </div>
+
+            {/* Phone Card */}
+            <div className="contact-channel-card">
+              <div className="channel-icon-box" aria-hidden="true">
+                <Phone size={22} />
+              </div>
+              <div className="channel-info">
+                <span className="channel-label">DIRECT PHONE</span>
+                <a
+                  href={personalInfo.phoneHref}
+                  className="channel-value"
+                  aria-label="Call Md Naquiuzzaman at +91 7779879534"
+                >
+                  {personalInfo.phone}
+                </a>
+              </div>
+            </div>
+
+            {/* Location & Relocation Card */}
+            <div className="contact-channel-card">
+              <div className="channel-icon-box" aria-hidden="true">
+                <MapPin size={22} />
+              </div>
+              <div className="channel-info">
+                <span className="channel-label">LOCATION & RELOCATION</span>
+                <span className="channel-text">
+                  {personalInfo.location} • Open to immediate relocation
+                </span>
+              </div>
+            </div>
+
+            {/* Timeline & Availability Card */}
+            <div className="contact-channel-card">
+              <div className="channel-icon-box" aria-hidden="true">
+                <Calendar size={22} />
+              </div>
+              <div className="channel-info">
+                <span className="channel-label">AVAILABILITY</span>
+                <span className="channel-text">
+                  Available for Summer 2025/2026 Internships & Engineering Roles
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Primary Action Buttons */}
+          <div className="contact-actions-row">
+            <a
+              href={personalInfo.emailHref}
+              className="btn btn-primary contact-cta-btn"
+              aria-label="Send an email to Md Naquiuzzaman"
+            >
+              <Send size={17} />
+              <span>Email Me</span>
+              <ArrowUpRight size={16} />
+            </a>
+
+            <a
+              href={personalInfo.resumeUrl}
+              className="btn btn-secondary contact-resume-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download Md Naquiuzzaman's Resume PDF"
+            >
+              <FileText size={17} />
+              <span>Download Resume</span>
+              <ArrowUpRight size={16} />
             </a>
           </div>
 
-          {/* Quick contact information list */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "24px", color: "var(--muted)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <Mail size={18} color="var(--accent)" />
-              <a href={personalInfo.emailHref} style={{ color: "inherit", textDecoration: "none" }}>
-                {personalInfo.email}
-              </a>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <Phone size={18} color="var(--accent)" />
-              <a href={personalInfo.phoneHref} style={{ color: "inherit", textDecoration: "none" }}>
-                {personalInfo.phone}
-              </a>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <MapPin size={18} color="var(--accent)" />
-              <span>{personalInfo.location} ({personalInfo.relocation})</span>
-            </div>
+          {/* Social Profiles Direct Links */}
+          <div className="contact-socials-wrapper">
+            <div className="contact-socials-label">FIND ME ON PROFESSIONAL NETWORKS</div>
+            <SocialLinks variant="all" showLabels={true} className="contact-socials-list" />
           </div>
-        </div>
-
-        {/* Contact Form */}
-        <div>
-          {submitted ? (
-            <div
-              style={{
-                background: "var(--bg-elevated)",
-                padding: "32px",
-                borderRadius: "12px",
-                border: "1px solid rgba(34, 197, 94, 0.3)",
-                textAlign: "center",
-              }}
-            >
-              <CheckCircle size={40} color="#22c55e" style={{ margin: "0 auto 16px" }} />
-              <h3 style={{ fontSize: "1.25rem", color: "var(--text)", marginBottom: "8px" }}>
-                Message Received
-              </h3>
-              <p style={{ color: "var(--muted)", fontSize: "0.95rem" }}>
-                Thank you, {formData.name || "there"}! You can also email directly at{" "}
-                <a href={personalInfo.emailHref} style={{ color: "var(--accent)" }}>
-                  {personalInfo.email}
-                </a>.
-              </p>
-            </div>
-          ) : (
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="field">
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  autoComplete="name"
-                  required
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  autoComplete="email"
-                  required
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button className="btn btn-main" type="submit">
-                Submit
-              </button>
-            </form>
-          )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

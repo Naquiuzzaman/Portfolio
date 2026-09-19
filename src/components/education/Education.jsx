@@ -31,8 +31,6 @@ export const Education = () => {
                     <div className="edu-location-line">
                       <MapPin size={13} style={{ marginRight: "4px" }} />
                       <span>{edu.location}</span>
-                      <span className="bullet-sep">•</span>
-                      <span>{edu.currentYear}</span>
                     </div>
                   </div>
                 </div>

@@ -24,10 +24,10 @@ export const personalInfo = {
     "Driven by discipline and measurable impact, I serve on the Google Developer Student Club Tech Team and continuously build solutions that solve real-world problems."
   ],
   quickStats: [
-    { label: "Education", value: "B.Tech Computer Science" },
-    { label: "University", value: "Jamia Hamdard" },
+    { label: "Degree", value: "B.Tech. in CSE" },
+    { label: "University", value: "Jamia Hamdard University" },
     { label: "Current CGPA", value: "7.6 / 10" },
-    { label: "Graduation", value: "June 2027" }
+    { label: "Graduation", value: "June 2027 (Expected)" }
   ]
 };
 
