@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "start index.html"
+  },
   "dependencies": {
     "framer-motion": "^12.38.0"
   }
