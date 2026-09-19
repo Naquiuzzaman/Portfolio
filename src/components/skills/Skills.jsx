@@ -1,63 +1,74 @@
 import React from "react";
 import { allSkillsList, skillCategories } from "../../data/skills";
+import { Code2, Layout, Server, Database, Sparkles, Terminal } from "lucide-react";
+
+const iconMap = {
+  code: Code2,
+  layout: Layout,
+  server: Server,
+  database: Database,
+  sparkles: Sparkles,
+};
 
 export const Skills = () => {
   return (
-    <section id="skills">
-      {/* Horizontal skills ticker bar */}
+    <section id="skills" className="skills-section">
+      {/* Top Quick-Glance Ticker Bar */}
       <div className="skills-strip-wrapper">
-        <div className="skills" aria-label="Key Technologies">
+        <div className="skills" aria-label="Core Technologies Ticker">
           {allSkillsList.map((skill) => (
-            <span key={skill}>{skill}</span>
+            <span key={skill}>
+              <span className="ticker-dot" aria-hidden="true">•</span>
+              {skill}
+            </span>
           ))}
         </div>
       </div>
 
-      {/* Categorized skills matrix */}
-      <div className="section-inner" style={{ paddingTop: "80px", paddingBottom: "48px" }}>
-        <div className="section-header" style={{ textAlign: "center" }}>
-          <div className="section-eyebrow">Technical Competencies</div>
-          <h2 className="section-title">Skills & Technologies</h2>
+      <div className="section-inner" style={{ paddingTop: "88px", paddingBottom: "72px" }}>
+        {/* Section Heading */}
+        <div className="section-header" style={{ maxWidth: "680px", marginBottom: "52px" }}>
+          <div className="section-eyebrow">Technical Toolkit</div>
+          <h2 className="section-title">Technologies I Build With</h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "1.02rem", marginTop: "12px", lineHeight: "1.7" }}>
+            The core tools, languages, and frameworks I use across academic coursework,
+            full-stack development, applied AI experimentation, and practical software projects.
+          </p>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "24px",
-          }}
-        >
-          {skillCategories.map((cat) => (
-            <div
-              key={cat.category}
-              style={{
-                background: "var(--surface-elevated)",
-                padding: "24px",
-                borderRadius: "var(--radius-md)",
-                border: "1px solid var(--border)",
-              }}
-            >
-              <h3 style={{ fontSize: "1.15rem", marginBottom: "8px", color: "var(--text-primary)" }}>
-                {cat.category}
-              </h3>
-              <p style={{ color: "var(--text-secondary)", fontSize: "0.85rem", marginBottom: "16px" }}>
-                {cat.description}
-              </p>
-              <div className="tags">
-                {cat.skills.map((item) => (
-                  <span
-                    key={item.name}
-                    style={{
-                      border: item.highlight ? "1px solid var(--border-accent)" : "1px solid var(--border)",
-                      color: item.highlight ? "var(--text-primary)" : "var(--text-secondary)",
-                      background: item.highlight ? "var(--accent-subtle)" : "var(--surface-card)",
-                    }}
-                  >
-                    {item.name}
-                  </span>
-                ))}
+
+        {/* 5-Category Technical Matrix */}
+        <div className="skills-matrix-grid">
+          {skillCategories.map((cat) => {
+            const IconComponent = iconMap[cat.icon] || Terminal;
+            return (
+              <div key={cat.id} className="skill-category-card">
+                <div className="skill-cat-header">
+                  <div className="skill-cat-icon" aria-hidden="true">
+                    <IconComponent size={20} />
+                  </div>
+                  <div>
+                    <h3 className="skill-cat-title">{cat.category}</h3>
+                    <p className="skill-cat-desc">{cat.description}</p>
+                  </div>
+                </div>
+
+                {/* Skill Chips Grid */}
+                <div className="skill-chips-list">
+                  {cat.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className={`skill-chip ${skill.highlight ? "highlighted" : ""}`}
+                    >
+                      <div className="skill-chip-name">{skill.name}</div>
+                      {skill.note && (
+                        <div className="skill-chip-note">{skill.note}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

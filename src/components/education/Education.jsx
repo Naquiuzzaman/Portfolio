@@ -1,71 +1,67 @@
 import React from "react";
 import { education } from "../../data/education";
+import { GraduationCap, BookOpen, Award, Calendar, MapPin } from "lucide-react";
 
 export const Education = () => {
   return (
-    <section id="education" style={{ padding: "80px 0", borderTop: "1px solid rgba(148, 163, 184, 0.08)" }}>
+    <section id="education" className="education-section">
       <div className="section-inner">
-        <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", marginBottom: "36px" }}>
-          Education & Academic Background
-        </h2>
+        {/* Section Header */}
+        <div className="section-header" style={{ maxWidth: "680px", marginBottom: "52px" }}>
+          <div className="section-eyebrow">Academic Foundation</div>
+          <h2 className="section-title">Education & Core Coursework</h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "1.02rem", marginTop: "12px", lineHeight: "1.7" }}>
+            Formal computer science engineering curriculum focused on systems, algorithm design,
+            relational databases, and intelligent software applications.
+          </p>
+        </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        {/* Education Degree Showcase Cards */}
+        <div className="education-cards-wrapper">
           {education.map((edu, index) => (
-            <div
-              key={index}
-              style={{
-                background: "var(--bg-elevated)",
-                padding: "28px",
-                borderRadius: "12px",
-                border: "1px solid rgba(148, 163, 184, 0.12)",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                  gap: "12px",
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: "1.35rem", color: "var(--text)" }}>{edu.institution}</h3>
-                  <div style={{ color: "var(--accent)", fontSize: "1.05rem", fontWeight: "600", marginTop: "4px" }}>
-                    {edu.degree}
+            <div key={index} className="education-card">
+              <div className="edu-card-top">
+                <div className="edu-institution-group">
+                  <div className="edu-icon-box" aria-hidden="true">
+                    <GraduationCap size={24} />
                   </div>
-                  <div style={{ color: "var(--muted)", fontSize: "0.9rem", marginTop: "4px" }}>
-                    {edu.location} • {edu.currentYear}
+                  <div>
+                    <h3 className="edu-institution-title">{edu.institution}</h3>
+                    <div className="edu-degree-subtitle">{edu.degree}</div>
+                    <div className="edu-location-line">
+                      <MapPin size={13} style={{ marginRight: "4px" }} />
+                      <span>{edu.location}</span>
+                      <span className="bullet-sep">•</span>
+                      <span>{edu.currentYear}</span>
+                    </div>
                   </div>
                 </div>
 
-                <div style={{ textAlign: "right" }}>
-                  <span
-                    style={{
-                      background: "rgba(34, 197, 94, 0.15)",
-                      color: "#22c55e",
-                      padding: "6px 14px",
-                      borderRadius: "999px",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      display: "inline-block",
-                    }}
-                  >
-                    CGPA: {edu.cgpa}
-                  </span>
-                  <div style={{ fontSize: "0.85rem", color: "var(--muted)", marginTop: "6px" }}>
-                    Graduation: {edu.duration}
+                <div className="edu-metrics-group">
+                  <div className="edu-cgpa-pill">
+                    <Award size={15} style={{ marginRight: "6px" }} />
+                    <span>CGPA: {edu.cgpa}</span>
+                  </div>
+                  <div className="edu-duration-line">
+                    <Calendar size={13} style={{ marginRight: "5px" }} />
+                    <span>Graduation: {edu.duration}</span>
                   </div>
                 </div>
               </div>
 
-              <div style={{ marginTop: "24px" }}>
-                <h4 style={{ fontSize: "0.95rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "12px" }}>
-                  Key Coursework
-                </h4>
-                <div className="tags">
+              {/* Coursework Section */}
+              <div className="edu-coursework-container">
+                <div className="coursework-header">
+                  <BookOpen size={16} color="var(--accent-hover)" />
+                  <h4 className="coursework-title">Key Computer Science Coursework</h4>
+                </div>
+
+                <div className="coursework-chips-grid">
                   {edu.coursework.map((course) => (
-                    <span key={course}>{course}</span>
+                    <div key={course} className="coursework-chip">
+                      <span className="course-dot"></span>
+                      <span>{course}</span>
+                    </div>
                   ))}
                 </div>
               </div>

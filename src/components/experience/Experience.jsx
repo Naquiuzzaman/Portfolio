@@ -1,93 +1,91 @@
 import React from "react";
 import { experiences, hackathons } from "../../data/experience";
+import { Users, Trophy, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 
 export const Experience = () => {
   return (
-    <section id="experience" style={{ padding: "80px 0", borderTop: "1px solid rgba(148, 163, 184, 0.08)" }}>
+    <section id="experience" className="experience-section">
       <div className="section-inner">
-        <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", marginBottom: "36px" }}>
-          Experience & Leadership
-        </h2>
+        {/* Section Header */}
+        <div className="section-header" style={{ maxWidth: "680px", marginBottom: "52px" }}>
+          <div className="section-eyebrow">Experience & Leadership</div>
+          <h2 className="section-title">Where I Have Applied My Skills</h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "1.02rem", marginTop: "12px", lineHeight: "1.7" }}>
+            Engineering solutions, building community web tools, and collaborating with developers
+            to create measurable real-world impact.
+          </p>
+        </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+        {/* Experience Timeline Cards */}
+        <div className="experience-cards-wrapper">
           {experiences.map((exp, idx) => (
-            <div
-              key={idx}
-              style={{
-                background: "var(--bg-elevated)",
-                padding: "28px",
-                borderRadius: "12px",
-                border: "1px solid rgba(148, 163, 184, 0.12)",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                  gap: "12px",
-                  marginBottom: "12px",
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: "1.3rem", color: "var(--text)" }}>{exp.role}</h3>
-                  <div style={{ color: "var(--accent)", fontWeight: "600", marginTop: "4px" }}>
-                    {exp.organization}
+            <div key={idx} className="experience-card">
+              <div className="exp-card-header">
+                <div className="exp-role-group">
+                  <div className="exp-icon-box" aria-hidden="true">
+                    <Users size={22} />
+                  </div>
+                  <div>
+                    <h3 className="exp-role-title">{exp.role}</h3>
+                    <div className="exp-org-name">{exp.organization}</div>
                   </div>
                 </div>
-                <div
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "var(--muted)",
-                    background: "rgba(148, 163, 184, 0.08)",
-                    padding: "6px 12px",
-                    borderRadius: "20px",
-                  }}
-                >
-                  {exp.period}
+
+                <div className="exp-meta-group">
+                  <div className="exp-period-pill">
+                    <Calendar size={13} style={{ marginRight: "5px" }} />
+                    <span>{exp.period}</span>
+                  </div>
+                  <div className="exp-location">
+                    <MapPin size={13} style={{ marginRight: "4px" }} />
+                    <span>{exp.location}</span>
+                  </div>
                 </div>
               </div>
 
-              <ul style={{ paddingLeft: "20px", color: "var(--muted)", lineHeight: "1.8", marginTop: "16px" }}>
-                {exp.contributions.map((item, i) => (
-                  <li key={i} style={{ marginBottom: "8px" }}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {/* Impact Contributions */}
+              <div className="exp-contributions">
+                <h4 className="contributions-eyebrow">Key Contributions & Measurable Impact</h4>
+                <ul className="contributions-list">
+                  {exp.contributions.map((item, i) => (
+                    <li key={i}>
+                      <CheckCircle2 size={16} className="item-icon" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <div className="tags" style={{ marginTop: "16px" }}>
-                {exp.technologies.map((tech) => (
-                  <span key={tech}>{tech}</span>
-                ))}
+              {/* Technologies Applied */}
+              <div className="exp-tech-footer">
+                <span className="tech-label">Applied Technologies:</span>
+                <div className="tags">
+                  {exp.technologies.map((tech) => (
+                    <span key={tech} className="tag-pill">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Hackathons showcase */}
+        {/* Hackathons & Competitions Row */}
         {hackathons && hackathons.length > 0 && (
-          <div style={{ marginTop: "48px" }}>
-            <h3 style={{ fontSize: "1.2rem", marginBottom: "16px", color: "var(--text)" }}>
-              Hackathons & Competitions
-            </h3>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+          <div className="hackathons-container">
+            <div className="hackathons-header">
+              <Trophy size={18} color="var(--accent-hover)" />
+              <h3 className="hackathons-title">Hackathons & Engineering Competitions</h3>
+            </div>
+
+            <div className="hackathons-grid">
               {hackathons.map((h, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: "var(--bg-elevated)",
-                    padding: "16px 20px",
-                    borderRadius: "8px",
-                    border: "1px solid rgba(148, 163, 184, 0.12)",
-                    flex: "1 1 260px",
-                  }}
-                >
-                  <div style={{ fontWeight: "600", color: "var(--text)" }}>{h.name}</div>
-                  <div style={{ fontSize: "0.85rem", color: "var(--muted)", marginTop: "4px" }}>
-                    {h.focus}
-                  </div>
+                <div key={i} className="hackathon-card">
+                  <div className="hackathon-badge">Competition</div>
+                  <h4 className="hackathon-name">{h.name}</h4>
+                  <div className="hackathon-role">{h.role}</div>
+                  <p className="hackathon-focus">{h.focus}</p>
                 </div>
               ))}
             </div>

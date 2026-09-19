@@ -1,68 +1,71 @@
 /**
- * Verified Technical Skills Dataset
- * Categorized for recruiter & engineering manager evaluation
+ * Verified Technical Skills Dataset — Portfolio V2
+ * Structured into 5 clear engineering domains based exclusively on verified resume and codebase data.
  */
 
 export const skillCategories = [
   {
+    id: "languages",
     category: "Languages",
-    description: "Core programming and markup languages",
+    icon: "code",
+    description: "Core programming and scripting languages for algorithms and applications",
     skills: [
-      { name: "JavaScript (ES6+)", level: "Advanced", highlight: true },
-      { name: "Java", level: "Intermediate", highlight: true },
-      { name: "Python", level: "Intermediate", highlight: false },
-      { name: "HTML5", level: "Advanced", highlight: false },
-      { name: "CSS3", level: "Advanced", highlight: false }
+      { name: "Java", highlight: true, note: "OOP & DSA Coursework" },
+      { name: "JavaScript", highlight: true, note: "Full-Stack Development" },
+      { name: "Python", highlight: false, note: "Scripting & ML Fundamentals" }
     ]
   },
   {
-    category: "Frontend Development",
-    description: "Building responsive, accessible, and fast user interfaces",
+    id: "frontend",
+    category: "Frontend",
+    icon: "layout",
+    description: "Building responsive, modern, and accessible user interfaces",
     skills: [
-      { name: "React.js", level: "Advanced", highlight: true },
-      { name: "Tailwind CSS", level: "Advanced", highlight: true },
-      { name: "Framer Motion", level: "Intermediate", highlight: false },
-      { name: "Responsive UI/UX", level: "Advanced", highlight: false },
-      { name: "Component Architecture", level: "Advanced", highlight: false }
+      { name: "React", highlight: true, note: "Component Architecture & Hooks" },
+      { name: "HTML5", highlight: false, note: "Semantic Structure" },
+      { name: "CSS3", highlight: false, note: "Custom Design Systems & Flexbox/Grid" },
+      { name: "Tailwind CSS", highlight: true, note: "Utility-First Styling" }
     ]
   },
   {
-    category: "Backend & Databases",
-    description: "Server-side logic, microservices, and persistent data",
+    id: "backend",
+    category: "Backend & APIs",
+    icon: "server",
+    description: "Server-side services, routing, and RESTful architectures",
     skills: [
-      { name: "Node.js", level: "Advanced", highlight: true },
-      { name: "Express.js", level: "Advanced", highlight: true },
-      { name: "MongoDB", level: "Intermediate", highlight: true },
-      { name: "RESTful APIs", level: "Advanced", highlight: true },
-      { name: "Firebase (Firestore/Auth)", level: "Intermediate", highlight: false }
+      { name: "Node.js", highlight: true, note: "Runtime & Microservices" },
+      { name: "Express.js", highlight: true, note: "RESTful API Endpoints" },
+      { name: "RESTful APIs", highlight: true, note: "CRUD Architecture & Integration" }
     ]
   },
   {
-    category: "AI & Cloud Integrations",
-    description: "Generative AI implementations and modern cloud workflows",
+    id: "database",
+    category: "Database",
+    icon: "database",
+    description: "Data persistence, schema design, and document queries",
     skills: [
-      { name: "Gemini API", level: "Practical", highlight: true },
-      { name: "Prompt Engineering", level: "Practical", highlight: false },
-      { name: "Vercel Cloud Deployment", level: "Advanced", highlight: false },
-      { name: "Microservices", level: "Intermediate", highlight: false }
+      { name: "MongoDB", highlight: true, note: "NoSQL Document Storage & Queries" }
     ]
   },
   {
-    category: "Developer Tools & Practices",
-    description: "Tooling for disciplined, collaborative engineering",
+    id: "ai-tools",
+    category: "AI & Developer Tools",
+    icon: "sparkles",
+    description: "AI model integrations, cloud platforms, and developer workflows",
     skills: [
-      { name: "Git & GitHub", level: "Advanced", highlight: true },
-      { name: "Postman API Testing", level: "Advanced", highlight: true },
-      { name: "VS Code", level: "Advanced", highlight: false },
-      { name: "Data Structures & Algorithms", level: "Core Coursework", highlight: true }
+      { name: "Gemini API", highlight: true, note: "Generative AI Integration" },
+      { name: "Firebase", highlight: true, note: "Cloud Firestore & Authentication" },
+      { name: "Git", highlight: true, note: "Version Control & Branch Workflows" },
+      { name: "VS Code", highlight: false, note: "Primary IDE Environment" },
+      { name: "Postman", highlight: false, note: "API Testing & Validation" }
     ]
   }
 ];
 
 export const allSkillsList = [
-  "JavaScript", "React", "Node.js", "Express", "MongoDB",
+  "JavaScript", "React", "Node.js", "Express.js", "MongoDB",
   "Java", "Python", "HTML5", "CSS3", "Tailwind CSS",
-  "RESTful APIs", "Gemini API", "Firebase", "Git", "Postman"
+  "RESTful APIs", "Gemini API", "Firebase", "Git", "Postman", "VS Code"
 ];
 
 export default skillCategories;
