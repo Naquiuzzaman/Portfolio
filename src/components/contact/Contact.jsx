@@ -93,15 +93,15 @@ export const Contact = () => {
               </div>
             </div>
 
-            {/* Location & Relocation Card */}
+            {/* Location Card */}
             <div className="contact-channel-card">
               <div className="channel-icon-box" aria-hidden="true">
                 <MapPin size={22} />
               </div>
               <div className="channel-info">
-                <span className="channel-label">LOCATION & RELOCATION</span>
+                <span className="channel-label">LOCATION</span>
                 <span className="channel-text">
-                  {personalInfo.location} • Open to immediate relocation
+                  {personalInfo.location}
                 </span>
               </div>
             </div>
@@ -114,7 +114,7 @@ export const Contact = () => {
               <div className="channel-info">
                 <span className="channel-label">AVAILABILITY</span>
                 <span className="channel-text">
-                  Available for Summer 2025/2026 Internships & Engineering Roles
+                  {personalInfo.availability}
                 </span>
               </div>
             </div>

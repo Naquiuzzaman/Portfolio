@@ -60,9 +60,16 @@ export const Skills = () => {
                       className={`skill-chip ${skill.highlight ? "highlighted" : ""}`}
                     >
                       <div className="skill-chip-name">{skill.name}</div>
-                      {skill.note && (
-                        <div className="skill-chip-note">{skill.note}</div>
-                      )}
+                      <div className="skill-chip-meta">
+                        {skill.note && (
+                          <div className="skill-chip-note">{skill.note}</div>
+                        )}
+                        {skill.usedIn && (
+                          <div className="skill-chip-usedin" title={`Demonstrated in: ${skill.usedIn}`}>
+                            <span className="usedin-label">Applied:</span> {skill.usedIn}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -140,7 +140,7 @@ export const Hero = () => {
               >
                 <div className="eyebrow">
                   <Sparkles size={12} style={{ display: "inline", marginRight: "4px" }} />
-                  Currently Building
+                  LIVE PROJECT
                 </div>
                 <div className="project-name">
                   <span>HelpLocal AI</span>

@@ -11,7 +11,7 @@ export const skillCategories = [
     description: "Core programming and scripting languages for algorithms and applications",
     skills: [
       { name: "Java", highlight: true, note: "OOP & DSA Coursework" },
-      { name: "JavaScript", highlight: true, note: "Full-Stack Development" },
+      { name: "JavaScript", highlight: true, note: "Full-Stack Development", usedIn: "SalahTime • HelpLocal AI • Raw Material" },
       { name: "Python", highlight: false, note: "Scripting & ML Fundamentals" }
     ]
   },
@@ -21,10 +21,10 @@ export const skillCategories = [
     icon: "layout",
     description: "Building responsive, modern, and accessible user interfaces",
     skills: [
-      { name: "React", highlight: true, note: "Component Architecture & Hooks" },
+      { name: "React", highlight: true, note: "Component Architecture & Hooks", usedIn: "HelpLocal AI • Vandor • GDSC" },
       { name: "HTML5", highlight: false, note: "Semantic Structure" },
       { name: "CSS3", highlight: false, note: "Custom Design Systems & Flexbox/Grid" },
-      { name: "Tailwind CSS", highlight: true, note: "Utility-First Styling" }
+      { name: "Tailwind CSS", highlight: true, note: "Utility-First Styling", usedIn: "Vandor" }
     ]
   },
   {
@@ -33,9 +33,9 @@ export const skillCategories = [
     icon: "server",
     description: "Server-side services, routing, and RESTful architectures",
     skills: [
-      { name: "Node.js", highlight: true, note: "Runtime & Microservices" },
-      { name: "Express.js", highlight: true, note: "RESTful API Endpoints" },
-      { name: "RESTful APIs", highlight: true, note: "CRUD Architecture & Integration" }
+      { name: "Node.js", highlight: true, note: "Runtime & Microservices", usedIn: "Vandor • GDSC • Raw Material" },
+      { name: "Express.js", highlight: true, note: "RESTful API Endpoints", usedIn: "Vandor • GDSC" },
+      { name: "RESTful APIs", highlight: true, note: "CRUD Architecture & Integration", usedIn: "GDSC • Vandor • Raw Material" }
     ]
   },
   {
@@ -44,7 +44,7 @@ export const skillCategories = [
     icon: "database",
     description: "Data persistence, schema design, and document queries",
     skills: [
-      { name: "MongoDB", highlight: true, note: "NoSQL Document Storage & Queries" }
+      { name: "MongoDB", highlight: true, note: "NoSQL Document Storage & Queries", usedIn: "Vandor" }
     ]
   },
   {
@@ -53,9 +53,9 @@ export const skillCategories = [
     icon: "sparkles",
     description: "AI model integrations, cloud platforms, and developer workflows",
     skills: [
-      { name: "Gemini API", highlight: true, note: "Generative AI Integration" },
-      { name: "Firebase", highlight: true, note: "Cloud Firestore & Authentication" },
-      { name: "Git", highlight: true, note: "Version Control & Branch Workflows" },
+      { name: "Gemini API", highlight: true, note: "Generative AI Integration", usedIn: "HelpLocal AI" },
+      { name: "Firebase", highlight: true, note: "Cloud Firestore & Authentication", usedIn: "HelpLocal AI" },
+      { name: "Git", highlight: true, note: "Version Control & Branch Workflows", usedIn: "GDSC • All Projects" },
       { name: "VS Code", highlight: false, note: "Primary IDE Environment" },
       { name: "Postman", highlight: false, note: "API Testing & Validation" }
     ]

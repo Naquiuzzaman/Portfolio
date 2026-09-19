@@ -11,7 +11,6 @@ export const personalInfo = {
   roleHeadline: "Full-Stack Developer & AI Enthusiast",
   subHeadline: "Frontend & Backend Engineer specializing in React, Node.js, and GenAI API integrations.",
   location: "New Delhi, India",
-  relocation: "Open to immediate joining & relocation",
   availability: "Available for Software Engineering Internships & Full-Time Roles",
   email: "naquiuzzaman01@gmail.com",
   emailHref: "mailto:naquiuzzaman01@gmail.com",

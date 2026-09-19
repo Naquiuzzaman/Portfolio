@@ -18,7 +18,7 @@ export const projects = [
     image: "/src/assets/images/helplocal.webp",
     github: null,
     live: "https://help-hub-brown.vercel.app/",
-    status: "Production Live",
+    status: "LIVE",
     badge: "Flagship Project",
     tags: ["React", "Firebase", "Gemini API", "JavaScript", "CSS3", "Vercel"],
     
@@ -72,7 +72,7 @@ export const projects = [
     image: "/src/assets/images/salahtime.webp",
     github: null,
     live: "https://salah-time-iota.vercel.app/",
-    status: "Production Live",
+    status: "LIVE",
     badge: "Featured Utility",
     tags: ["JavaScript", "HTML5", "CSS3", "Geolocation API", "Vercel"],
 
@@ -117,7 +117,7 @@ export const projects = [
     image: null,
     github: null,
     live: null,
-    status: "Private Codebase",
+    status: "PRIVATE CODEBASE",
     badge: "MERN Stack Project",
     tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST API"],
 
@@ -162,7 +162,7 @@ export const projects = [
     image: null,
     github: null,
     live: null,
-    status: "Academic / Enterprise Project",
+    status: "ACADEMIC PROJECT",
     badge: "Technical Project",
     tags: ["JavaScript", "HTML5", "CSS3", "RESTful API", "Node.js"],
 
