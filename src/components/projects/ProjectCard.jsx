@@ -1,106 +1,153 @@
-import React from "react";
-import helplocalImg from "../../assets/images/helplocal.webp";
+import React, { useState } from "react";
 import salahtimeImg from "../../assets/images/salahtime.webp";
-import tictactoeImg from "../../assets/images/tictactoe.webp";
+import { ArrowUpRight, ChevronDown, ChevronUp, Lock, Terminal, Cpu } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const imageMap = {
-  "/src/assets/images/helplocal.webp": helplocalImg,
   "/src/assets/images/salahtime.webp": salahtimeImg,
-  "/src/assets/images/tictactoe.webp": tictactoeImg,
 };
 
 export const ProjectCard = ({ project }) => {
-  const imgSrc = imageMap[project.image] || project.image;
+  const [expanded, setExpanded] = useState(false);
+  const imgSrc = imageMap[project.image] || null;
 
   return (
-    <article className="project">
-      <div className="project-image">
-        <div className="project-image-inner">
-          {imgSrc ? (
-            <img
-              src={imgSrc}
-              alt={project.title}
-              loading="lazy"
-              decoding="async"
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-          ) : (
-            <div
-              style={{
-                width: "100%",
-                aspectRatio: "16/9",
-                background: "var(--bg-elevated)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                padding: "24px",
-                border: "1px solid rgba(148, 163, 184, 0.15)",
-                borderRadius: "12px",
-              }}
-            >
-              <span style={{ fontSize: "1.2rem", fontWeight: "600", color: "var(--accent)" }}>
-                {project.category || "Full-Stack Project"}
-              </span>
-              <span style={{ fontSize: "0.85rem", color: "var(--muted)", marginTop: "8px" }}>
-                {project.status || "In Development"}
-              </span>
-            </div>
-          )}
+    <article className="standard-project-card" id={`project-${project.id}`}>
+      {/* Top Card Meta */}
+      <div className="card-top-row">
+        <div className="card-num-badge">
+          <span className="num">{project.number}</span>
+          <span className="category-label">{project.category}</span>
         </div>
+
+        {/* Live or Status Badge */}
+        {project.live ? (
+          <span className="status-live-pill">
+            <span className="live-dot" aria-hidden="true"></span>
+            <span>Live</span>
+          </span>
+        ) : (
+          <span className="status-private-pill">
+            <Lock size={12} />
+            <span>{project.status}</span>
+          </span>
+        )}
       </div>
 
-      <div className="project-content">
-        <h3>{project.title}</h3>
+      {/* Visual / Blueprint Section */}
+      <div className="card-media-wrapper">
+        {imgSrc ? (
+          <div className="card-image-frame">
+            <img
+              src={imgSrc}
+              alt={`${project.title} screenshot`}
+              loading="lazy"
+              decoding="async"
+              width="1898"
+              height="995"
+            />
+          </div>
+        ) : (
+          <div className="card-blueprint-frame">
+            <Terminal size={24} color="var(--accent-hover)" />
+            <div className="blueprint-title">{project.title}</div>
+            <div className="blueprint-badge">{project.badge || "Full-Stack System"}</div>
+          </div>
+        )}
+      </div>
 
-        <div className="tags">
+      {/* Content Section */}
+      <div className="card-content">
+        <h3 className="card-title">{project.title}</h3>
+        <p className="card-tagline">{project.tagline}</p>
+        <p className="card-desc">{project.shortDescription}</p>
+
+        <div className="tags" style={{ margin: "16px 0 20px" }}>
           {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
+            <span key={tag} className="tag-pill">
+              {tag}
+            </span>
           ))}
         </div>
 
-        <p>{project.desc}</p>
-
-        {/* Action Buttons: Strict NULL handling */}
-        <div className="buttons">
-          {project.github && (
-            <a
-              className="btn btn-main"
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View GitHub
-            </a>
-          )}
-
+        {/* Action Row */}
+        <div className="card-actions">
           {project.live && (
             <a
-              className="btn btn-link"
               href={project.live}
+              className="btn btn-primary"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`View live demo for ${project.title}`}
             >
-              View Project ↗
+              <span>Live Demo</span>
+              <ArrowUpRight size={15} />
             </a>
           )}
 
-          {!project.github && !project.live && (
-            <span
-              style={{
-                fontSize: "0.85rem",
-                color: "var(--muted)",
-                background: "rgba(148, 163, 184, 0.1)",
-                padding: "6px 14px",
-                borderRadius: "6px",
-                border: "1px solid rgba(148, 163, 184, 0.2)",
-              }}
-            >
+          {!project.live && !project.github && (
+            <span className="non-clickable-badge">
               {project.status || "Private Repository"}
             </span>
           )}
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => setExpanded(!expanded)}
+            aria-expanded={expanded}
+            aria-controls={`details-${project.id}`}
+          >
+            <span>{expanded ? "Less" : "Architecture"}</span>
+            {expanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+          </button>
         </div>
       </div>
+
+      {/* Expandable Architecture & Details Drawer */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            id={`details-${project.id}`}
+            className="card-details-panel"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <div className="details-inner">
+              <div className="details-section">
+                <div className="details-heading">Problem & Objective</div>
+                <p className="details-text">{project.problem}</p>
+              </div>
+
+              <div className="details-section">
+                <div className="details-heading">Solution & Implementation</div>
+                <p className="details-text">{project.solution}</p>
+              </div>
+
+              {project.architecture && project.architecture.length > 0 && (
+                <div className="details-section">
+                  <div className="details-heading" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <Cpu size={14} color="var(--accent-hover)" />
+                    <span>Technical Workflow</span>
+                  </div>
+                  <div className="compact-pipeline">
+                    {project.architecture.map((step) => (
+                      <div key={step.step} className="compact-step">
+                        <span className="step-num">{step.step}</span>
+                        <div>
+                          <strong>{step.name}:</strong> {step.desc}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </article>
   );
 };
